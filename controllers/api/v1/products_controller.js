@@ -81,6 +81,12 @@ module.exports.deleteProduct = function (req, res, next) {
 // update product quantity using route "/api/v1/products/:productId/update_quantity/?number=10"
 module.exports.updateQuantity = async function (req, res, next) {
     const id = req.params.productId;
+    // check if id is a valid id
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(200).json({
+            error: "No product found"
+        })
+    }
     const product = await Product.findById(id);
     const number = req.query.number;
     try {
@@ -91,8 +97,10 @@ module.exports.updateQuantity = async function (req, res, next) {
                 product.quantity = product.quantity + update;
                 product.save();
                 res.status(200).json({
+                    message: "Product updated successfully",
                     data: {
-                        product: product
+                        name: product.name,
+                        updated_quantity: product.quantity
                     }
                 })
             } else {
