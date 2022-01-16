@@ -4,8 +4,10 @@ const app = express();
 const port = 3000;
 const db = require("./config/mongoose");
 
-
-
+require('lightrun').start({
+    lightrunSecret: 'e52447c2-7aab-4f8d-890d-07b717351a60',
+    company: 'sarvesh',
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -14,11 +16,6 @@ app.use(express.json());
 app.use("/", require("./routes"));
 
 db();
-
-
-
-
-
 
 
 // listening to port
