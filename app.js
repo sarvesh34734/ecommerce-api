@@ -5,8 +5,8 @@ const port = 3000;
 const db = require("./config/mongoose");
 
 require('lightrun').start({
-    lightrunSecret: 'e52447c2-7aab-4f8d-890d-07b717351a60',
-    company: 'sarvesh',
+    lightrunSecret: 'd299b06f-5bbc-4da2-8248-3f542d465bc6',
+    company: 'iitbhu',
 });
 
 app.use(express.urlencoded({ extended: true }));
